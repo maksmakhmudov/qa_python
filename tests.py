@@ -35,11 +35,13 @@ class TestBooksCollector:
         collector.add_new_book('Гарри Поттер')
         assert len(collector.books_genre) == 1
 
+
     def test_set_book_genre_valid(self):
         collector = BooksCollector()
         collector.add_new_book('Гарри Поттер')
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
         assert collector.get_book_genre('Гарри Поттер') == 'Фантастика'
+
 
     def test_set_book_genre_invalid_genre(self):
         collector = BooksCollector()
@@ -47,11 +49,13 @@ class TestBooksCollector:
         collector.set_book_genre('Гарри Поттер', 'Сказка')
         assert collector.get_book_genre('Гарри Поттер') == ''
 
+
     def test_get_book_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Гарри Поттер')
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
         assert collector.get_book_genre('Гарри Поттер') == 'Фантастика'
+
 
     def test_get_books_with_specific_genre(self):
         collector = BooksCollector()
@@ -61,11 +65,13 @@ class TestBooksCollector:
         collector.set_book_genre('Властелин колец', 'Фантастика')
         assert collector.get_books_with_specific_genre('Фантастика') == ['Гарри Поттер', 'Властелин колец']
 
+
     def test_get_books_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Гарри Поттер')
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
         assert collector.get_books_genre() == {'Гарри Поттер': 'Фантастика'}                   
+
 
     def test_get_books_for_children(self):
         collector = BooksCollector()
@@ -75,11 +81,13 @@ class TestBooksCollector:
         collector.set_book_genre('Пиковая дама', 'Ужасы')
         assert collector.get_books_for_children() == ['Гарри Поттер']   
 
+
     def test_add_book_in_favorites(self):
         collector = BooksCollector()
         collector.add_new_book('Гарри Поттер')
         collector.add_book_in_favorites('Гарри Поттер')
         assert 'Гарри Поттер' in collector.favorites
+
 
     def test_delete_book_from_favorites(self):
         collector = BooksCollector()
