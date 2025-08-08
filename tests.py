@@ -47,11 +47,12 @@ class TestBooksCollector:
         collector.set_book_genre('Гарри Поттер', 'Сказка')
         assert collector.get_book_genre('Гарри Поттер') == ''
 
+#измененная проверка test_get_book_genre
     def test_get_book_genre(self):
         collector = BooksCollector()
-        collector.add_new_book('Гарри Поттер')
-        collector.set_book_genre('Гарри Поттер', 'Фантастика')
-        assert collector.get_book_genre('Гарри Поттер') == 'Фантастика'
+        collector.add_new_book('Война и мир')
+        collector.books_genre['Война и мир'] = 'Классика'  
+        assert collector.get_book_genre('Война и мир') == 'Классика'
 
     def test_get_books_with_specific_genre(self):
         collector = BooksCollector()
@@ -86,4 +87,13 @@ class TestBooksCollector:
         collector.add_new_book('Гарри Поттер')
         collector.add_book_in_favorites('Гарри Поттер')
         collector.delete_book_from_favorites('Гарри Поттер')
-        assert 'Гарри Поттер' not in collector.favorites             
+        assert 'Гарри Поттер' not in collector.favorites
+
+#добавлен тест на получение списка избранныз книг
+    def test_get_list_of_favorites_books(self):
+        collector = BooksCollector()
+        collector.add_new_book('Гарри Поттер')
+        collector.add_new_book('Властелин колец')
+        collector.add_book_in_favorites('Гарри Поттер')
+        collector.add_book_in_favorites('Властелин колец')
+        assert collector.get_list_of_favorites_books() == ['Гарри Поттер', 'Властелин колец']
